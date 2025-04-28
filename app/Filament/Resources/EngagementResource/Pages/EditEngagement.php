@@ -16,4 +16,13 @@ class EditEngagement extends EditRecord
             Actions\DeleteAction::make(),
         ];
     }
+    protected function getSavedNotificationRedirectUrl(): ?string
+    {
+        return static::getUrl('index');
+    }
+
+    protected function getCancelRedirectUrl(): string
+    {
+        return static::getUrl('index');
+    }
 }

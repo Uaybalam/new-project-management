@@ -12,7 +12,7 @@ class Engagement extends Model
     use HasFactory;
 
     protected $fillable = [
-        'entities_id',
+        'entity_id',
         'status',
         'start_date',
         'end_date',

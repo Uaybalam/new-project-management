@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('engagements', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('entity_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('entity_id')->nullable()->constrained()->cascadeOnDelete();
             $table->string('status')->default('budget'); // cotizacion, activo, cancelado
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
@@ -32,10 +32,11 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('engagements');
+        
         Schema::table('engagements', function (Blueprint $table) {
             $table->dropForeign(['entity_id']);
             $table->dropColumn('entity_id');
         });
+        Schema::dropIfExists('engagements');
     }
 };

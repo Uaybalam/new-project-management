@@ -17,4 +17,13 @@ class Shareholder extends Pivot
         'shareholdable_id',
         'percentage',
     ];
+    public function shareholdable(): MorphTo
+    {
+        return $this->morphTo();
+    }
+
+    public function entity()
+    {
+        return $this->belongsTo(\App\Models\Entity::class);
+    }
 }

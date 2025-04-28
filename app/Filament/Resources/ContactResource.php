@@ -12,6 +12,10 @@ use Filament\Resources\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TextInput\Mask;
 
 class ContactResource extends Resource
 {
@@ -19,10 +23,7 @@ class ContactResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-user';
 
-    protected static function getNavigationGroup(): ?string
-    {
-        return __('Management');
-    }
+    
 
     public static function form(Form $form): Form
     {
@@ -35,6 +36,50 @@ class ContactResource extends Resource
             Forms\Components\TextInput::make('company'),
             Forms\Components\TextInput::make('position'),
             Forms\Components\Textarea::make('address'),
+            TextInput::make('ssn')
+                ->label('SSN')
+                ->mask(fn (Mask $mask) => $mask->pattern('000-00-0000'))
+                ->required(),
+
+            FileUpload::make('ssn_itin_copy')
+                ->label('SSN/ITIN Copy')
+                ->disk('public')  // Adjust the disk if needed
+                ->required(),
+
+            TextInput::make('drivers_license')
+                ->label('Drivers License')
+                ->required(),
+
+            FileUpload::make('drivers_license_copy')
+                ->label('Drivers License Copy')
+                ->disk('public')  // Adjust the disk if needed
+                ->required(),
+
+            DatePicker::make('date_of_birth')
+                ->label('Date of Birth')
+                ->required(),
+
+            TextInput::make('pit_filing_status')
+                ->label('PIT Filing Status')
+                ->required(),
+
+            FileUpload::make('pit_copy')
+                ->label('PIT Copy')
+                ->disk('public')  // Adjust the disk if needed
+                ->required(),
+
+            TextInput::make('spouse_first_name')
+                ->label('Spouse First Name')
+                ->required(),
+
+            TextInput::make('spouse_last_name')
+                ->label('Spouse Last Name')
+                ->required(),
+
+            TextInput::make('spouse_ssn_itin')
+                ->label('Spouse SSN/ITIN')
+                ->mask(fn (Mask $mask) => $mask->pattern('000-00-0000'))
+                ->required(),
             Forms\Components\Textarea::make('notes')->rows(4),
         ]);
     }

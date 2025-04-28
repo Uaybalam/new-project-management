@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('engagement_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
+            $table->string('name')->nullable();
             $table->integer('quantity')->default(1);
             $table->decimal('unit_price', 10, 2);
             $table->decimal('subtotal', 12, 2);

@@ -13,14 +13,28 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('entities', function (Blueprint $table) {
+        Schema::create('entities', function (Blueprint $table) { 
             $table->id();
             $table->string('name');
-            $table->bigInteger('tax_id')->nullable();
-            $table->string('type')->nullable();//SSN, EIN, ITIN
-            $table->integer('phone')->nullable();
+            $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('address')->nullable();
+            $table->string('entity_status')->nullable();
+            $table->string('website')->nullable();
+            $table->string('billing_address')->nullable();
+            $table->string('business_address')->nullable();
+            $table->string('document_folder_link')->nullable();
+            $table->date('incorporation_date')->nullable();
+            $table->string('formally_known_as')->nullable();
+            $table->string('doing_business_as')->nullable();
+            $table->date('effective_entity_type_date')->nullable();
+            $table->string('state_of_registration')->nullable();
+            $table->string('industry')->nullable();
+            $table->integer('number_of_employees')->nullable();
+            $table->string('revenue_range')->nullable();
+            $table->foreignId('assigned_am_id')->nullable()->constrained('users');
+            $table->foreignId('assigned_tm_id')->nullable()->constrained('users');
+            $table->foreignId('assigned_sa_id')->nullable()->constrained('users');
+            
             $table->text('notes')->nullable();
             $table->timestamps();
         });
