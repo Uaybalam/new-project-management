@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->string('company')->nullable();
-            $table->string('position')->nullable();
             $table->text('notes')->nullable();
             $table->string('ssn')->nullable();
             $table->string('ssn_itin_copy')->nullable(); // File Upload for SSN/ITIN

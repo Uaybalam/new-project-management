@@ -33,56 +33,44 @@ class ContactResource extends Resource
         return $form
         ->schema([
             Forms\Components\TextInput::make('first_name')->required(),
-            Forms\Components\TextInput::make('last_name'),
-            Forms\Components\TextInput::make('email')->email(),
-            Forms\Components\TextInput::make('phone'),
-            Forms\Components\TextInput::make('company'),
-            Forms\Components\TextInput::make('position'),
+            Forms\Components\TextInput::make('last_name')->required(),
+            Forms\Components\TextInput::make('email')->email()->required(),
+            Forms\Components\TextInput::make('phone')->required(),
             Forms\Components\Textarea::make('address'),
             TextInput::make('ssn')
                 ->label('SSN')
-                ->mask(fn (Mask $mask) => $mask->pattern('000-00-0000'))
-                ->required(),
+                ->mask(fn (Mask $mask) => $mask->pattern('000-00-0000')),
 
             FileUpload::make('ssn_itin_copy')
                 ->label('SSN/ITIN Copy')
-                ->disk('public')  // Adjust the disk if needed
-                ->required(),
+                ->disk('public'),
 
             TextInput::make('drivers_license')
-                ->label('Drivers License')
-                ->required(),
+                ->label('Drivers License'),
 
             FileUpload::make('drivers_license_copy')
                 ->label('Drivers License Copy')
-                ->disk('public')  // Adjust the disk if needed
-                ->required(),
+                ->disk('public'),
 
             DatePicker::make('date_of_birth')
-                ->label('Date of Birth')
-                ->required(),
+                ->label('Date of Birth'),
 
             TextInput::make('pit_filing_status')
-                ->label('PIT Filing Status')
-                ->required(),
+                ->label('PIT Filing Status'),
 
             FileUpload::make('pit_copy')
                 ->label('PIT Copy')
-                ->disk('public')  // Adjust the disk if needed
-                ->required(),
+                ->disk('public'),
 
             TextInput::make('spouse_first_name')
-                ->label('Spouse First Name')
-                ->required(),
+                ->label('Spouse First Name'),
 
             TextInput::make('spouse_last_name')
-                ->label('Spouse Last Name')
-                ->required(),
+                ->label('Spouse Last Name'),
 
             TextInput::make('spouse_ssn_itin')
                 ->label('Spouse SSN/ITIN')
-                ->mask(fn (Mask $mask) => $mask->pattern('000-00-0000'))
-                ->required(),
+                ->mask(fn (Mask $mask) => $mask->pattern('000-00-0000')),
             Forms\Components\Textarea::make('notes')->rows(4),
         ]);
     }
