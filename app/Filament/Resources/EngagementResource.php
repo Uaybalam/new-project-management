@@ -24,7 +24,10 @@ class EngagementResource extends Resource
     protected static ?string $model = Engagement::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-document';
-    
+    protected static function getNavigationGroup(): ?string
+    {
+        return __('Management');
+    }
 
     public static function form(Form $form): Form
     {
